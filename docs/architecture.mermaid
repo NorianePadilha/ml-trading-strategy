@@ -1,0 +1,71 @@
+graph TB
+    subgraph DATA["Data layer"]
+        YF["Yahoo Finance API"]
+        DL["data_loader.py"]
+        RAW[("raw prices (Parquet)")]
+        YF --> DL --> RAW
+    end
+
+    subgraph FS["Feature store"]
+        DEF["definitions.py"]
+        STORE["store.py"]
+        OFF[("offline store (Parquet, partitioned)")]
+        ON[("online store (SQLite)")]
+        DEF --> STORE
+        STORE --> OFF
+        STORE --> ON
+    end
+
+    subgraph MODEL["Model registry"]
+        REG["registry.json"]
+        V1["v001/ (model + metadata)"]
+        V2["v002/ (model + metadata)"]
+        VN["v00N/ (model + metadata)"]
+        LATEST["latest (symlink)"]
+        REG --- V1
+        REG --- V2
+        REG --- VN
+        VN --> LATEST
+    end
+
+    subgraph JOBS["Scheduled jobs"]
+        DAILY["daily_inference.py (Task Scheduler, weekdays)"]
+        MONTHLY["monthly_retrain.py (Task Scheduler, 1st of month)"]
+    end
+
+    subgraph MONITOR["Monitoring"]
+        DRIFT["drift.py (KS test, PSI)"]
+        PERF["performance.py (Spearman, spread)"]
+        ALERTS["alerts.py (email notifications)"]
+        LOGS[("logs/ (inference, drift, performance)")]
+        DRIFT --> LOGS
+        PERF --> LOGS
+        DRIFT --> ALERTS
+        PERF --> ALERTS
+    end
+
+    subgraph API["API (FastAPI + Docker)"]
+        PRED_EP["GET /predictions"]
+        PORT_EP["GET /portfolio"]
+        HEALTH["GET /health"]
+        HIST["GET /model/history"]
+    end
+
+    RAW --> STORE
+    DAILY --> DL
+    DAILY --> STORE
+    DAILY --> LATEST
+    DAILY --> DRIFT
+    MONTHLY --> STORE
+    MONTHLY --> MODEL
+    ON --> API
+    LATEST --> API
+    LOGS --> HEALTH
+    OFF --> MONTHLY
+
+    style DATA fill:#E6F1FB,stroke:#85B7EB,color:#0C447C
+    style FS fill:#E1F5EE,stroke:#5DCAA5,color:#085041
+    style MODEL fill:#EEEDFE,stroke:#AFA9EC,color:#3C3489
+    style JOBS fill:#FAEEDA,stroke:#FAC775,color:#633806
+    style MONITOR fill:#FCEBEB,stroke:#F09595,color:#791F1F
+    style API fill:#EAF3DE,stroke:#97C459,color:#27500A
