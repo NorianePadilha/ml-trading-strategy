@@ -1,0 +1,13 @@
+services:
+  api:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../models:/app/models
+      - ../results:/app/results
+      - ../logs:/app/logs
+      - ../feature_store/online:/app/feature_store/online
+    restart: unless-stopped
