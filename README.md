@@ -64,6 +64,13 @@ Constructs a monthly-rebalanced long-only portfolio:
 ### 06 - Evaluation
 Generates a full performance report via QuantStats, including analysis by market regime, annual comparison, drawdown analysis, and risk metrics.
 
+### 07 - Sensitivity Analysis
+Tests robustness by varying key parameters one at a time:
+
+- **XGBoost hyperparameters**: max_depth (3 to 9) and learning_rate (0.01 to 0.2). Higher values improve spread but increase instability (CV > 30%), suggesting the model captures real patterns but the magnitude depends on configuration.
+- **Transaction costs**: Sharpe drops linearly from 0.66 (no cost) to 0.00 (1% cost). The strategy breaks even at ~1% cost per trade, meaning it is only viable with low-cost brokers.
+- **Portfolio concentration**: Top 10% yields the best Sharpe (0.67) but the worst drawdown (-41.6%). Top 40% has the smallest drawdown (-37.6%) but the lowest Sharpe (0.52). The sweet spot is around 15-20%.
+
 ## Project Structure
 
 ```
@@ -74,7 +81,8 @@ trading/
 │   ├── 03_clustering_regimes.ipynb
 │   ├── 04_model_training.ipynb
 │   ├── 05_portfolio_optimization.ipynb
-│   └── 06_evaluation.ipynb
+│   ├── 06_evaluation.ipynb
+│   └── 07_sensitivity_analysis.ipynb
 ├── data/
 │   ├── raw/
 │   └── processed/
@@ -101,7 +109,7 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-Run the notebooks in order (01 through 06). Notebook 01 downloads data from Yahoo Finance and may take a few minutes. Notebook 04 (model training) is the most compute-intensive step.
+Run the notebooks in order (01 through 07). Notebook 01 downloads data from Yahoo Finance and may take a few minutes. Notebooks 04 and 07 are the most compute-intensive steps. GPU acceleration (CUDA) is supported for XGBoost via `device="cuda"` in the model parameters.
 
 ## Requirements
 
@@ -113,8 +121,9 @@ Key libraries: yfinance, pandas, numpy, scikit-learn, xgboost, pypfopt, quantsta
 ## Limitations
 
 - **Survivorship bias**: uses current S&P 500 composition for the entire period. Companies that were removed or went bankrupt are excluded, which may inflate results.
-- **Simplified transaction costs**: applies a flat 0.1% cost on turnover. Real-world costs vary with order size, liquidity, and market conditions. Slippage and market impact are not modeled.
+- **Simplified transaction costs**: applies a flat 0.1% cost on turnover. Sensitivity analysis shows the strategy breaks even at ~1% cost. With more realistic costs (0.5%), Sharpe drops to 0.32. Only viable with low-cost execution.
 - **High turnover**: the strategy replaces most of the portfolio each month, generating costs and tax implications not accounted for.
+- **Hyperparameter sensitivity**: model performance varies significantly with max_depth and learning_rate (CV > 30%). An ensemble approach could improve robustness.
 - **Bull market bias**: the test period (2013-2026) coincides with a prolonged US bull market. The strategy has not been tested in sustained bear markets.
 - **No alternative data**: the model relies solely on price, volume, and Fama-French factors. Fundamental data, sentiment, and macroeconomic indicators could improve predictions.
 
