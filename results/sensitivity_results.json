@@ -1,0 +1,162 @@
+{
+  "xgb_depth": [
+    {
+      "spearman_mean": 0.03137622159650984,
+      "spearman_positive_pct": 0.5845498783454988,
+      "spread_q5_q1": 0.008113303833810068,
+      "q1_return": 0.0048723476546305355,
+      "q5_return": 0.012985651488440605,
+      "max_depth": 3
+    },
+    {
+      "spearman_mean": 0.0656809823695271,
+      "spearman_positive_pct": 0.6453771289537713,
+      "spread_q5_q1": 0.01767615198795337,
+      "q1_return": 0.0006349945046977898,
+      "q5_return": 0.01831114649265116,
+      "max_depth": 5
+    },
+    {
+      "spearman_mean": 0.09949798069146944,
+      "spearman_positive_pct": 0.712287104622871,
+      "spread_q5_q1": 0.02528228261297135,
+      "q1_return": -0.003394263351835928,
+      "q5_return": 0.021888019261135424,
+      "max_depth": 7
+    },
+    {
+      "spearman_mean": 0.13327330658113978,
+      "spearman_positive_pct": 0.7591240875912408,
+      "spread_q5_q1": 0.032473916074502,
+      "q1_return": -0.007136998713319741,
+      "q5_return": 0.02533691736118226,
+      "max_depth": 9
+    }
+  ],
+  "xgb_lr": [
+    {
+      "spearman_mean": 0.038797208341821675,
+      "spearman_positive_pct": 0.5979318734793188,
+      "spread_q5_q1": 0.009456597628770314,
+      "q1_return": 0.004769638138224488,
+      "q5_return": 0.014226235766994801,
+      "learning_rate": 0.01
+    },
+    {
+      "spearman_mean": 0.05161928781460087,
+      "spearman_positive_pct": 0.6198296836982968,
+      "spread_q5_q1": 0.014098905261723842,
+      "q1_return": 0.002427736069356454,
+      "q5_return": 0.016526641331080297,
+      "learning_rate": 0.03
+    },
+    {
+      "spearman_mean": 0.0656809823695271,
+      "spearman_positive_pct": 0.6453771289537713,
+      "spread_q5_q1": 0.01767615198795337,
+      "q1_return": 0.0006349945046977898,
+      "q5_return": 0.01831114649265116,
+      "learning_rate": 0.05
+    },
+    {
+      "spearman_mean": 0.0814327673014474,
+      "spearman_positive_pct": 0.6867396593673966,
+      "spread_q5_q1": 0.02147754025935749,
+      "q1_return": -0.0015908365412345671,
+      "q5_return": 0.019886703718122924,
+      "learning_rate": 0.1
+    },
+    {
+      "spearman_mean": 0.09802750943864799,
+      "spearman_positive_pct": 0.7329683698296837,
+      "spread_q5_q1": 0.024557382653091233,
+      "q1_return": -0.0027791246898492997,
+      "q5_return": 0.021778257963241933,
+      "learning_rate": 0.2
+    }
+  ],
+  "transaction_cost": [
+    {
+      "total_return": 8.955374799002959,
+      "annual_return": 0.193817828187133,
+      "volatility": 0.23459263105200756,
+      "sharpe": 0.655680562076277,
+      "max_drawdown": -0.40343912905512624,
+      "transaction_cost": 0.0
+    },
+    {
+      "total_return": 7.326541503953379,
+      "annual_return": 0.177488271026097,
+      "volatility": 0.2346354791495873,
+      "sharpe": 0.5859653941697539,
+      "max_drawdown": -0.4043607712334903,
+      "transaction_cost": 0.001
+    },
+    {
+      "total_return": 5.962729998064517,
+      "annual_return": 0.16136308385906273,
+      "volatility": 0.2347445900273228,
+      "sharpe": 0.5170005572649696,
+      "max_drawdown": -0.40528241341185434,
+      "transaction_cost": 0.002
+    },
+    {
+      "total_return": 3.0660170719445707,
+      "annual_return": 0.11419065061819067,
+      "volatility": 0.23546829849903853,
+      "sharpe": 0.3150770234936471,
+      "max_drawdown": -0.4080473399469473,
+      "transaction_cost": 0.005
+    },
+    {
+      "total_return": 0.651789279302273,
+      "annual_return": 0.039445306845706574,
+      "volatility": 0.23798037763504828,
+      "sharpe": -0.0023308356756373823,
+      "max_drawdown": -0.4566156078909499,
+      "transaction_cost": 0.01
+    }
+  ],
+  "concentration": [
+    {
+      "total_return": 13.577686869505484,
+      "annual_return": 0.22943674467276054,
+      "volatility": 0.28110476356618974,
+      "sharpe": 0.6739008698020701,
+      "max_drawdown": -0.41597046267095733,
+      "top_pct": 0.1
+    },
+    {
+      "total_return": 8.30999672669551,
+      "annual_return": 0.18766561222232125,
+      "volatility": 0.2510080672288864,
+      "sharpe": 0.5882903041824133,
+      "max_drawdown": -0.40706013328818347,
+      "top_pct": 0.15
+    },
+    {
+      "total_return": 7.326541503953379,
+      "annual_return": 0.177488271026097,
+      "volatility": 0.2346354791495873,
+      "sharpe": 0.5859653941697539,
+      "max_drawdown": -0.4043607712334903,
+      "top_pct": 0.2
+    },
+    {
+      "total_return": 5.578487679983283,
+      "annual_return": 0.15629203476581788,
+      "volatility": 0.21239548857812143,
+      "sharpe": 0.5475259175434151,
+      "max_drawdown": -0.39355733459056125,
+      "top_pct": 0.3
+    },
+    {
+      "total_return": 4.758822717012412,
+      "annual_return": 0.144491176127868,
+      "volatility": 0.19985218115504166,
+      "sharpe": 0.5228423103714122,
+      "max_drawdown": -0.37565576682111756,
+      "top_pct": 0.4
+    }
+  ]
+}
